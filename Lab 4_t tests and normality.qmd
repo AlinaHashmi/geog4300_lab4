@@ -47,7 +47,7 @@ Load the dataset using read_csv, and also take a look at the two variables of in
 **Task 1** _Load the Pulse data and filter it to only valid responses._
 
 ```{r Task1}
-
+pulse_data <- read.csv("data/pulse_2023.csv")
 ```
 
 You'll be conducting a two-sample test of difference to look at whether the number of children differs between those displaced and not displaced. To know which test to use, you have to assess the normality of the THHLD_NUMKID variable. 
