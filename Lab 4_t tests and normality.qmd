@@ -48,8 +48,12 @@ Load the dataset using read_csv, and also take a look at the two variables of in
 
 ```{r Task1}
 pulse_data <- read.csv("data/pulse_2023.csv")
+
+str(pulse_data)
+
 pulse_filtered <- pulse_data %>%
-  na.omit()
+  na.omit() %>%
+  filter(ND_DISPLACE != -99 & ND_DISPLACE != -88)
 ```
 
 You'll be conducting a two-sample test of difference to look at whether the number of children differs between those displaced and not displaced. To know which test to use, you have to assess the normality of the THHLD_NUMKID variable. 
@@ -71,12 +75,18 @@ Now you can test whether the number of children differs between displaced and no
 
 **Task 3** _Based on the normality of the data, what is the appropriate statistical test for determining whether the number of children differs between these two groups? Explain why this test is appropriate and give a null and alternative hypothesis for this test_
 
-{Your answer here}
+Since the data is skewed right, the best statistical test to use is a Wilcoxon Test as it is a t-test that is suitable for data that is not normally distributed. The null hypothesis would be that there is no difference in the number of children between households that were displaced by natural disasters and households that were not displaced. 
 
 **Task 4** _Run the test you identified in Task 3. Also calculate the mean for each dataset, which you can use to determine the nature of the difference--which group (if any) has more children._
 
 ```{r Task4}
+wilcox <- wilcox.test(THHLD_NUMKID ~ ND_DISPLACE, data = pulse_filtered)
 
+wilcox_result <- wilcox.test(THHLD_NUMKID ~ ND_DISPLACE, data = df)
+
+mean_displaced <- pulse_filtered %>%
+  group_by(ND_DISPLACE) %>%
+  summarize(mean = mean(THHLD_NUMKID))
 ```
 
 **Task 5** _Interpret the results of the analysis you did in task 4._ 
