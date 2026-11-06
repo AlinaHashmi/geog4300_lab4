@@ -84,7 +84,7 @@ displaced <- pulse_filtered %>%
 not_displaced <- pulse_filtered %>%
   filter(ND_DISPLACE == 2)
 
-wilcox <- wilcox.test(displaced$THHLD_NUMKID, not_displaced$THHLD_NUMKID)
+wilcox.test(displaced$THHLD_NUMKID, not_displaced$THHLD_NUMKID)
 
 mean_displaced <- pulse_filtered %>%
   group_by(ND_DISPLACE) %>%
@@ -122,7 +122,7 @@ pulse_table <- pulse_filtered2 %>%
 **Task 8** _Run a chi-square test on your contingency table to assess whether there are statistically significant differences in displacement time between these income groups. You'll likely need to delete the INCOME variable to do so._ 
 
 ```{r Task8}
-chisq.test(tornado_table %>% select(-ST))
+chisq.test(pulse_table %>% select(-INCOME))
 ```
 
 **Task 9** _To help with your interpretation of results, Calculate the percentage of households within each income group that fall into category 1 of ND_HOWLONG ("displaced less than a week")._
