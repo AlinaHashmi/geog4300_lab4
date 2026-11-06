@@ -114,16 +114,15 @@ pulse_filtered2 <- pulse_data %>%
 **Task 7** _Create a contingency table of responses to the ND_HOWLONG variable by INCOME. The rows of this table should be the income groups and the columns should be the categorical variables showing time displaced. Call the table when you are done._
 
 ```{r Task7}
-tornado_table<-tornado %>%
-  count(ST,MAG,name = "count") %>%
-  pivot_wider(names_from=MAG,values_from=count,values_fill=0) %>%
-  select(-`-9`) 
+pulse_table <- pulse_filtered2 %>%
+  count(ND_HOWLONG, INCOME, name = "count") %>%
+  pivot_wider(names_from = ND_HOWLONG, values_from = count, values_fill = 0)
 ```
 
 **Task 8** _Run a chi-square test on your contingency table to assess whether there are statistically significant differences in displacement time between these income groups. You'll likely need to delete the INCOME variable to do so._ 
 
 ```{r Task8}
-
+chisq.test(tornado_table %>% select(-ST))
 ```
 
 **Task 9** _To help with your interpretation of results, Calculate the percentage of households within each income group that fall into category 1 of ND_HOWLONG ("displaced less than a week")._
