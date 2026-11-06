@@ -49,8 +49,6 @@ Load the dataset using read_csv, and also take a look at the two variables of in
 ```{r Task1}
 pulse_data <- read.csv("data/pulse_2023.csv")
 
-str(pulse_data)
-
 pulse_filtered <- pulse_data %>%
   na.omit() %>%
   filter(ND_DISPLACE != -99 & ND_DISPLACE != -88)
@@ -80,9 +78,13 @@ Since the data is skewed right, the best statistical test to use is a Wilcoxon T
 **Task 4** _Run the test you identified in Task 3. Also calculate the mean for each dataset, which you can use to determine the nature of the difference--which group (if any) has more children._
 
 ```{r Task4}
-wilcox <- wilcox.test(THHLD_NUMKID ~ ND_DISPLACE, data = pulse_filtered)
+displaced <- pulse_filtered %>%
+  filter(ND_DISPLACE == 1)
 
-wilcox_result <- wilcox.test(THHLD_NUMKID ~ ND_DISPLACE, data = df)
+not_displaced <- pulse_filtered %>%
+  filter(ND_DISPLACE == 2)
+
+wilcox <- wilcox.test(displaced$THHLD_NUMKID, not_displaced$THHLD_NUMKID)
 
 mean_displaced <- pulse_filtered %>%
   group_by(ND_DISPLACE) %>%
