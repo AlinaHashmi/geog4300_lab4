@@ -104,13 +104,20 @@ Again, look at the data dictionary to better understand how these two variables 
 **Task 6** _Reload the original, unfiltered Pulse dataset (not the one you used in parts 1 and 2). Select only observations for households displaced by a natural disaster using the ND_DISPLACE variable. Then filter for records with valid responses to INCOME and ND_HOWLONG. Call the head of the table with `kable` when done._
 
 ```{r Task6}
-
+pulse_filtered2 <- pulse_data %>% 
+  filter(ND_DISPLACE == 1) %>%
+  na.omit() %>%
+  filter(INCOME != -99 & INCOME != -88) %>%
+  filter(ND_HOWLONG != -99 & ND_HOWLONG != -88)
 ```
 
 **Task 7** _Create a contingency table of responses to the ND_HOWLONG variable by INCOME. The rows of this table should be the income groups and the columns should be the categorical variables showing time displaced. Call the table when you are done._
 
 ```{r Task7}
-
+tornado_table<-tornado %>%
+  count(ST,MAG,name = "count") %>%
+  pivot_wider(names_from=MAG,values_from=count,values_fill=0) %>%
+  select(-`-9`) 
 ```
 
 **Task 8** _Run a chi-square test on your contingency table to assess whether there are statistically significant differences in displacement time between these income groups. You'll likely need to delete the INCOME variable to do so._ 
