@@ -142,6 +142,8 @@ pulse_table_pct <- pulse_table %>%
 **Task 10** _Interpret the results of your analysis in tasks 8 and 9._ 
   * Do you reject the null hypothesis based on these results and why (or why not)? 
   * What do your results in Task 9 tell you about differences in how quickly households were able to return?
+  
+  We reject the null hypothesis because the p-value of 2.2e-16 is very low. This means that there is a relationship between income level and the amount of time a household is displaced. It can be assumed that households with a lower income are more likely to be displaced for a longer period of time that households with a greater income. Only 33% of households that have a total household income less than $25,000 were able to return after a week of being displaced while over 50% of households that have an income of $75,000 and greater were able to return after a week. As the number of weeks increase, the percentage of households with a lower income level who are able to return increases as the percentage of households with a greater income level decreases. This could likely be due to lower income households experiencing greater damage or not having enough money in their emergency fund. It could also be because higher income households are prioritized more during natural disasters.
 
 ### Challenge Question:
 Calculate and map the percentage of households reporting displacement (ND_DISPLACE) by state. To do so, you'll need to start with a version of the dataset that excludes non-valid responses and then calculate the percentage displaced by state.
@@ -156,8 +158,8 @@ Once you've calculated that estimate, map it out using the `states_albers` geopa
 
 **Disclosure of assistance:** Besides class materials, what other sources of assistance did you use while completing this lab? These can include input from classmates, relevant material identified through web searches (e.g., Stack Overflow), or assistance from ChatGPT or other AI tools. How did these sources support your own learning in completing this lab?
 
-{Response here.}
+I used Google's AI overview to clarify the difference between the statistical tests as well as the code for creating a the percentages table; however, I primarily refered back to the class scripts to help me write my code.
 
 **Lab reflection:** How do you feel about the work you did on this lab? Was it easy, moderate, or hard? What are the biggest things you learned by completing it?
 
-{Your response here}
+I feel good about the work I did on this lab. I found the code easier than the last lab, but the analysis was a bit more difficult. 
