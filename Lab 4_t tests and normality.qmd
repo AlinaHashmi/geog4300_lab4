@@ -50,7 +50,6 @@ Load the dataset using read_csv, and also take a look at the two variables of in
 pulse_data <- read.csv("data/pulse_2023.csv")
 
 pulse_filtered <- pulse_data %>%
-  na.omit() %>%
   filter(ND_DISPLACE != -99 & ND_DISPLACE != -88)
 ```
 
@@ -73,7 +72,7 @@ Now you can test whether the number of children differs between displaced and no
 
 **Task 3** _Based on the normality of the data, what is the appropriate statistical test for determining whether the number of children differs between these two groups? Explain why this test is appropriate and give a null and alternative hypothesis for this test_
 
-Since the data is skewed right, the best statistical test to use is a Wilcoxon Test as it is a t-test that is suitable for data that is not normally distributed. The null hypothesis would be that there is no difference in the number of children between households that were displaced by natural disasters and households that were not displaced. 
+Since the data is skewed right, the best statistical test to use is a Wilcoxon Rank Sum Test as it is a t-test that is suitable for data that is not normally distributed. This test ranks observations rather than calculating the means which will prevent outliers from affecting the outcome. It will compare the number of children (THHLD_NUMKID) who were displaced (ND_DISPLACE = 1) with the number of children who were not displaced (ND_DISPLACE = 2). The null hypothesis for this test is that there is no difference between the number of children in households that were displaced by natural disasters and households that were not displaced. 
 
 **Task 4** _Run the test you identified in Task 3. Also calculate the mean for each dataset, which you can use to determine the nature of the difference--which group (if any) has more children._
 
@@ -94,6 +93,8 @@ mean_displaced <- pulse_filtered %>%
 **Task 5** _Interpret the results of the analysis you did in task 4._ 
   * Do you reject the null hypothesis? Why or why not? 
   * Based on the test result and the group means, what can we conclude about differences in the number of children between these two groups?
+  
+  The p-value for the Wilcoxon Rank Sum Test was 3.769e-08, which means that we reject the null hypothesis because the value was incredibly small. This means that the number of children in households that were displaced by natural disasters differs from the number of children in households that were not displaced. Based on the means of the two groups, households that were displaced (ND_DISPLACE = 1) have a greater average of 0.8244937 children while households that were not displaced (ND_DISPLACE = 2) have an average of 0.5700263 children. This could be due to a difference is age demographics as older populations may be more likely to live in more structurally sound homes while younger populations that have children are more likely to live in starter homes that are not as structurally sound.
 
 ### Identifying differences in time displaced by natural disasters across income groups
 
@@ -106,7 +107,6 @@ Again, look at the data dictionary to better understand how these two variables 
 ```{r Task6}
 pulse_filtered2 <- pulse_data %>% 
   filter(ND_DISPLACE == 1) %>%
-  na.omit() %>%
   filter(INCOME != -99 & INCOME != -88) %>%
   filter(ND_HOWLONG != -99 & ND_HOWLONG != -88)
 ```
