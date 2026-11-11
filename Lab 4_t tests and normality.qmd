@@ -11,6 +11,7 @@ editor_options:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(knitr)
 ```
 
 ## One and two sample difference tests
@@ -109,6 +110,8 @@ pulse_filtered2 <- pulse_data %>%
   filter(ND_DISPLACE == 1) %>%
   filter(INCOME != -99 & INCOME != -88) %>%
   filter(ND_HOWLONG != -99 & ND_HOWLONG != -88)
+
+kable(head(pulse_filtered2))
 ```
 
 **Task 7** _Create a contingency table of responses to the ND_HOWLONG variable by INCOME. The rows of this table should be the income groups and the columns should be the categorical variables showing time displaced. Call the table when you are done._
@@ -117,6 +120,8 @@ pulse_filtered2 <- pulse_data %>%
 pulse_table <- pulse_filtered2 %>%
   count(ND_HOWLONG, INCOME, name = "count") %>%
   pivot_wider(names_from = ND_HOWLONG, values_from = count, values_fill = 0)
+
+kable(head(pulse_table))
 ```
 
 **Task 8** _Run a chi-square test on your contingency table to assess whether there are statistically significant differences in displacement time between these income groups. You'll likely need to delete the INCOME variable to do so._ 
@@ -158,7 +163,7 @@ Once you've calculated that estimate, map it out using the `states_albers` geopa
 
 **Disclosure of assistance:** Besides class materials, what other sources of assistance did you use while completing this lab? These can include input from classmates, relevant material identified through web searches (e.g., Stack Overflow), or assistance from ChatGPT or other AI tools. How did these sources support your own learning in completing this lab?
 
-I used Google's AI overview to clarify the difference between the statistical tests as well as the code for creating a the percentages table; however, I primarily refered back to the class scripts to help me write my code.
+I used Google's AI overview to clarify the difference between the statistical tests as well as the code for creating a the percentages table; however, I primarily referred back to the class scripts to help me write my code.
 
 **Lab reflection:** How do you feel about the work you did on this lab? Was it easy, moderate, or hard? What are the biggest things you learned by completing it?
 
