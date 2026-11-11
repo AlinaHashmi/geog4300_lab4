@@ -142,6 +142,8 @@ pulse_table_pct <- pulse_table %>%
   select(-count) %>%
   pivot_wider(names_from = ND_HOWLONG,
               values_from = pct)
+
+kable(head(pulse_table_pct))
 ```
 
 **Task 10** _Interpret the results of your analysis in tasks 8 and 9._ 

@@ -263,7 +263,18 @@ pulse_table_pct <- pulse_table %>%
   select(-count) %>%
   pivot_wider(names_from = ND_HOWLONG,
               values_from = pct)
+
+kable(head(pulse_table_pct))
 ```
+
+| INCOME | total |    1 |    2 |    3 |   4 |    5 |
+|-------:|------:|-----:|-----:|-----:|----:|-----:|
+|      1 |   867 | 33.0 | 25.1 | 13.3 | 8.0 | 20.6 |
+|      2 |   420 | 38.6 | 29.0 | 11.9 | 5.5 | 15.0 |
+|      3 |   505 | 43.8 | 26.7 | 13.3 | 6.3 |  9.9 |
+|      4 |   648 | 48.8 | 24.7 | 12.0 | 6.5 |  8.0 |
+|      5 |   436 | 50.2 | 24.5 | 12.4 | 5.3 |  7.6 |
+|      6 |   564 | 56.2 | 20.4 | 10.3 | 6.6 |  6.6 |
 
 **Task 10** *Interpret the results of your analysis in tasks 8 and 9.*
 \* Do you reject the null hypothesis based on these results and why (or
